@@ -9,7 +9,10 @@ import heapq
 import sys
 
 
-from util import generate_graph
+from maze5 import generate_graph as maze5
+from maze8 import generate_graph as maze8
+from maze10 import generate_graph as maze10
+from maze12 import generate_graph as maze12
 
 max_possible_value = sys.maxsize
 
@@ -295,25 +298,29 @@ def get_manhattan_heuristic(node, goal):
 
 
 if __name__ == '__main__':
-    graph_neighbours = generate_graph()
+    graph_neighbours5 = maze5()
+    graph_neighbours8 = maze8()
+    graph_neighbours10 = maze10()
+    graph_neighbours12 = maze12()
+    # graph_neighbours = generate_graph()
 
     print("============ UCS Search ================")
-    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '61')
+    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours8, '0', '61')
     print("Path UCS:", path_ucs)
     # print("Explored Nodes UCS: ", explored_ucs)
     print(len(explored_ucs))
     print()
 
     print("============ AStar Search ================")
-    path_astar, explored_astar = astar_search(graph_neighbours, '0', '61')
+    path_astar, explored_astar = astar_search(graph_neighbours8, '7', '61')
     print("Path_astar:", path_astar)
     print("Explored Nodes A Star: ", explored_astar)
     print(len(explored_astar))
     print()
 
     print("============ Bottleneck Astar Search ================")
-    path_1, explored_1 = astar_search(graph_neighbours, '0', '27')
-    path_2, explored_2 = astar_search(graph_neighbours, '35', '61')
+    path_1, explored_1 = astar_search(graph_neighbours8, '0', '27')
+    path_2, explored_2 = astar_search(graph_neighbours8, '35', '61')
     print("Path1:", path_1)
     print("Path_2:", path_2)
 
