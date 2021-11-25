@@ -6,8 +6,13 @@ oren pudar : fed9b7
 tosca terang : 00afb9
 tosca gelap : 0081a7
 """
-
+from pathlib import Path
 import tkinter as tk
+OUTPUT_PATH = Path(__file__).parent
+ASSETS_PATH = OUTPUT_PATH / Path("./assets")
+
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
 
 class MainMenu:
     """
@@ -36,24 +41,36 @@ class MainMenu:
             font=("Lucida Console", 34 * -1)
         )
 
+        self.button1_image = tk.PhotoImage(file=relative_to_assets("pilih_labirin.png"))
         self.button1 = tk.Button(
             self.frame,
-            text="Pilih labirin",
+            image=self.button1_image,
+            borderwidth=0,
+            highlightthickness=0,
             relief="flat",
-            fg="#fff",
-            bg="#00afb9",
             command=self.go_to_maze_selection
         )
-        self.button1.place(x=466, y=288, width=145, height=64)
+        self.button1.place(
+            x=455.9999999999999,
+            y=277.99999999999994,
+            width=166.0,
+            height=84.0
+        )
 
+        self.button2_image = tk.PhotoImage(file=relative_to_assets("tentang.png"))
         self.button2 = tk.Button(
             self.frame,
-            text="Tentang",
             relief="flat",
-            fg="#fff",
-            bg="#00afb9"
+            image=self.button2_image,
+            borderwidth=0,
+            highlightthickness=0,
         )
-        self.button2.place(x=481, y=372, width=116, height=64)
+        self.button2.place(
+            x=480.9999999999999,
+            y=371.99999999999994,
+            width=116.0,
+            height=64.0
+        )
 
         self.frame.pack(fill="both", expand=1)
 
@@ -63,7 +80,7 @@ class MainMenu:
         frame seleksi labirin
         """
         self.frame.forget()
-        MazeSelection(self.master)
+        self.app = MazeSelection(self.master)
         # self.newWindow = tk.Toplevel(self.master)
         # self.app = Demo2(self.newWindow)
 
@@ -74,6 +91,7 @@ class MazeSelection:
     def __init__(self, master):
         self.master = master
         self.frame = tk.Frame(self.master)
+        self.frame.pack(fill="both", expand=1)
 
         self.canvas = tk.Canvas(
             self.frame,
@@ -94,17 +112,71 @@ class MazeSelection:
             font=("Lucida Console", 34 * -1)
         )
 
-        self.maze5 = self.Button(
+        self.button_image_1 = tk.PhotoImage(file=relative_to_assets("maze5.png"))
+        self.button_1 = tk.Button(
             self.frame,
-            image=
+            image=self.button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_1 clicked"),
+            relief="flat"
         )
-        # self.quitButton = tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
-        # self.quitButton.pack()
-        self.frame.pack(fill="both", expand=1)
-        # ControlMazeFrame(self.frame)
+        self.button_1.place(
+            x=40.999999999999886,
+            y=209.99999999999994,
+            width=228.0,
+            height=266.0
+        )
 
-    # def close_windows(self):
-    #     self.master.destroy()
+        self.button_image_2 = tk.PhotoImage(file=relative_to_assets("maze8.png"))
+        self.button_2 = tk.Button(
+            self.frame,
+            image=self.button_image_2,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_2 clicked"),
+            relief="flat"
+        )
+        self.button_2.place(
+            x=296.9999999999999,
+            y=209.99999999999994,
+            width=228.0,
+            height=266.0
+        )
+
+        self.button_image_3 = tk.PhotoImage(file=relative_to_assets("maze10.png"))
+        self.button_3 = tk.Button(
+            self.frame,
+            image=self.button_image_3,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_3 clicked"),
+            relief="flat"
+        )
+        self.button_3.place(
+            x=552.9999999999999,
+            y=209.99999999999994,
+            width=228.0,
+            height=266.0
+        )
+
+        self.button_image_4 = tk.PhotoImage(file=relative_to_assets("maze12.png"))
+        self.button_4 = tk.Button(
+            self.frame,
+            image=self.button_image_4,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_4 clicked"),
+            relief="flat"
+        )
+        self.button_4.place(
+            x=808.9999999999999,
+            y=209.99999999999994,
+            width=228.0,
+            height=266.0
+        )
+
+        # ControlMazeFrame(self.frame)
 
 class ControlMazeFrame:
     """
