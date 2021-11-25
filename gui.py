@@ -118,7 +118,7 @@ class MazeSelection:
             image=self.button_image_1,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_1 clicked"),
+            command=lambda: self.go_to_selected_maze(1),
             relief="flat"
         )
         self.button_1.place(
@@ -134,7 +134,7 @@ class MazeSelection:
             image=self.button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_2 clicked"),
+            command=lambda: self.go_to_selected_maze(2),
             relief="flat"
         )
         self.button_2.place(
@@ -150,7 +150,7 @@ class MazeSelection:
             image=self.button_image_3,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_3 clicked"),
+            command=lambda: self.go_to_selected_maze(3),
             relief="flat"
         )
         self.button_3.place(
@@ -166,7 +166,7 @@ class MazeSelection:
             image=self.button_image_4,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_4 clicked"),
+            command=lambda: self.go_to_selected_maze(4),
             relief="flat"
         )
         self.button_4.place(
@@ -176,82 +176,108 @@ class MazeSelection:
             height=266.0
         )
 
-        # ControlMazeFrame(self.frame)
-
-class ControlMazeFrame:
-    """
-    Class untuk mengontrol pilihan
-    pada frame seleksi labirin
-    """
-    def __init__(self, master):
-        self.master = master
-        self.selected_maze = tk.IntVar()
-
-        tk.Radiobutton(
-            self.master,  # container/frame nya
-            text="Labirin 5x5",
-            relief="flat",
-            bg="#fdfcdc",
-            value=0,
-            variable=self.selected_maze,
-            command=self.change_to_maze_frame
-        ).place(x=125, y=497)
-
-        tk.Radiobutton(
-            self.master,  # container/frame nya
-            text="Labirin 8x8",
-            relief="flat",
-            bg="#fdfcdc",
-            value=1,
-            variable=self.selected_maze,
-            command=self.change_to_maze_frame
-        ).place(x=381, y=497)
-
-        tk.Radiobutton(
-            self.master,  # container/frame nya
-            text="Labirin 10x10",
-            relief="flat",
-            bg="#fdfcdc",
-            value=2,
-            variable=self.selected_maze,
-            command=self.change_to_maze_frame
-        ).place(x=637, y=497)
-
-        tk.Radiobutton(
-            self.master,  # container/frame nya
-            text="Labirin 12x12",
-            relief="flat",
-            bg="#fdfcdc",
-            value=3,
-            variable=self.selected_maze,
-            command=self.change_to_maze_frame
-        ).place(x=893, y=497)
-
-        # bikin pilihan frame labirin
-        self.frames = {}
-        self.frames[5] = MazeFrame(5)
-        self.frames[8] = MazeFrame(8)
-        self.frames[10] = MazeFrame(10)
-        self.frames[12] = MazeFrame(12)
-
-        self.change_to_maze_frame()
-
-    def change_to_maze_frame(self):
+    def go_to_selected_maze(self, maze_number):
         """
-        Method untuk masuk ke dalam
-        frame labirin yang dipilih
+        Fungsi untuk berpindah ke
+        frame maze yang dipilih untuk
+        selanjutnya memilih titik awal dan akhir
         """
-        frame = self.frames[self.selected_maze.get()]
-        # frame.reset()
-        # frame.tkraise()
+        self.frame.forget()
+        self.app = MazeFrame(self.master, maze_number)
 
 class MazeFrame:
     """
     Frame untuk menu labirin
     Yang selanjutnya pilih awal dan akhir
     """
-    def __init__(self, maze_number):
-        print(maze_number)
+    def __init__(self, master, maze_number):
+        self.master = master
+        self.maze_number = maze_number
+        self.frame = tk.Frame(self.master)
+
+        self.canvas = tk.Canvas(
+            self.frame,
+            bg = "#FDFCDC",
+            height = 640,
+            width = 1078,
+            bd = 0,
+            highlightthickness = 0,
+            relief = "ridge"
+        )
+        self.canvas.place(x=0, y=0)
+        self.canvas.create_text(
+            341.9999999999999,
+            77.99999999999994,
+            anchor="nw",
+            text="Pilih titik awal dan akhir",
+            fill="#0081A7",
+            font=("WorkSans Bold", 34 * -1)
+        )
+
+        self.canvas.create_rectangle(
+            393.9999999999999,
+            163.99999999999994,
+            683.9999999999999,
+            453.99999999999994,
+            fill="#C4C4C4",
+            outline=""
+        )
+
+        self.entry_image_1 = tk.PhotoImage(file=relative_to_assets("entry_1.png"))
+        self.entry_bg_1 = self.canvas.create_image(
+            461.4999999999999,
+            529.5,
+            image=self.entry_image_1
+        )
+        self.entry_1 = tk.Entry(
+            bd=0,
+            bg="#FFFFFF",
+            highlightthickness=0
+        )
+        self.entry_1.place(
+            x=400.9999999999999,
+            y=499.99999999999994 + 23,
+            width=121.0,
+            height=30.0
+        )
+
+        self.entry_image_2 = tk.PhotoImage(file=relative_to_assets("entry_2.png"))
+        self.entry_bg_2 = self.canvas.create_image(
+            615.4999999999999,
+            529.5,
+            image=self.entry_image_2
+        )
+        self.entry_2 = tk.Entry(
+            bd=0,
+            bg="#FFFFFF",
+            highlightthickness=0
+        )
+        self.entry_2.place(
+            x=554.9999999999999,
+            y=499.99999999999994 + 23,
+            width=121.0,
+            height=30.0
+        )
+
+        self.canvas.create_text(
+            400.9999999999999,
+            507.99999999999994,
+            anchor="nw",
+            text="Titik awal",
+            fill="#00AFB9",
+            font=("IBMPlexSans SemiBold", 14 * -1)
+        )
+
+        self.canvas.create_text(
+            554.9999999999999,
+            507.99999999999994,
+            anchor="nw",
+            text="Titik akhir",
+            fill="#00AFB9",
+            font=("IBMPlexSans SemiBold", 14 * -1)
+        )
+
+        self.frame.pack(fill="both", expand=1)
 
 def main():
     """
