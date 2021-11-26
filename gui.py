@@ -224,7 +224,7 @@ class MazeFrame:
             outline=""
         )
 
-        self.titik_awal = tk.IntVar()
+        self.titik_awal = tk.StringVar()
         self.entry_image_1 = tk.PhotoImage(file=relative_to_assets("entry_1.png"))
         self.entry_bg_1 = self.canvas.create_image(
             461.4999999999999,
@@ -244,7 +244,7 @@ class MazeFrame:
             height=30.0
         )
 
-        self.titik_akhir = tk.IntVar()
+        self.titik_akhir = tk.StringVar()
         self.entry_image_2 = tk.PhotoImage(file=relative_to_assets("entry_2.png"))
         self.entry_bg_2 = self.canvas.create_image(
             615.4999999999999,
@@ -341,23 +341,38 @@ class MazeFrame:
         """
         Menggambar solusi jalur labirin
         """
-        print(self.titik_awal.get(), self.titik_akhir.get())
+        from Search_Algorithms import astar_search, maze8, maze5, maze10, maze12
 
-class ShowSolution:
-    def __init__(self, master):
-        pass
-        # buat petaknya
-        # for node in solusi:
-        #     node_location = np.where(maze_matrix == node)
-        #     x_1 = np.where(transposed == node)[0][0]
-        #     y_1 = np.where(transposed == node)[1][0]
+        if self.maze_size == 5:
+            graph = maze5()
+        elif self.maze_size == 8:
+            graph = maze8()
+        elif self.maze_size == 10:
+            graph = maze10()
+        else:
+            graph = maze12()
 
-        # self.canvas_maze.create_rectangle(
-        #     0.5,0.5,panjang_sisi,panjang_sisi,
-        #     fill="#fed9b7",
-        #     outline=""
-        # )
-        # solusi = ['7', '15', '23', '31', '30', '29', '21', '22', '14', '13', '5', '4', '12', '20', '28', '27', '19', '11', '10', '2', '1', '9', '17', '18', '26', '34', '35', '36', '44', '52', '60', '61']
+        # _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+        path, explored = astar_search(graph, self.titik_awal.get(), self.titik_akhir.get())
+        # _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+        print(self.maze_matrix.shape)
+        print("Jalur:", path)
+        print("Tereksplor:", explored)
+
+        for node in path:
+            print(node)
+            node_location = np.where(self.maze_matrix == int(node))
+            x_mat = node_location[0][0]
+            y_mat = node_location[1][0]
+
+            self.canvas_maze.create_rectangle(
+                self.sisi*y_mat + 7, #x1
+                self.sisi*x_mat + 7, #y1
+                self.sisi*(y_mat+1) - 4, #x2
+                self.sisi*(x_mat+1) - 4, #y2
+                fill="#f07167",
+                outline=""
+            )
 
 def main():
     """
