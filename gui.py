@@ -224,6 +224,7 @@ class MazeFrame:
             outline=""
         )
 
+        self.titik_awal = tk.IntVar()
         self.entry_image_1 = tk.PhotoImage(file=relative_to_assets("entry_1.png"))
         self.entry_bg_1 = self.canvas.create_image(
             461.4999999999999,
@@ -233,7 +234,8 @@ class MazeFrame:
         self.entry_1 = tk.Entry(
             bd=0,
             bg="#FFFFFF",
-            highlightthickness=0
+            highlightthickness=0,
+            textvariable=self.titik_awal
         )
         self.entry_1.place(
             x=400.9999999999999,
@@ -242,6 +244,7 @@ class MazeFrame:
             height=30.0
         )
 
+        self.titik_akhir = tk.IntVar()
         self.entry_image_2 = tk.PhotoImage(file=relative_to_assets("entry_2.png"))
         self.entry_bg_2 = self.canvas.create_image(
             615.4999999999999,
@@ -251,7 +254,8 @@ class MazeFrame:
         self.entry_2 = tk.Entry(
             bd=0,
             bg="#FFFFFF",
-            highlightthickness=0
+            highlightthickness=0,
+            textvariable=self.titik_akhir
         )
         self.entry_2.place(
             x=554.9999999999999,
@@ -283,6 +287,7 @@ class MazeFrame:
         self.maze_to_show(self.maze_size)
         self.maze_matrix = self.create_maze_matrix(self.maze_size)
         self.place_numbers(self.maze_matrix, self.maze_size, self.sisi)
+        self.entry_2.bind('<Return>', self.find_solution)
 
     def maze_to_show(self, maze_size):
         """
@@ -332,6 +337,12 @@ class MazeFrame:
             x_1 += sisi # setelah kolom pertama selesai, x bergerak
             y_1 = sisi/2 # reset nilai y_1
 
+    def find_solution(self, event):
+        """
+        Menggambar solusi jalur labirin
+        """
+        print(self.titik_awal.get(), self.titik_akhir.get())
+
 class ShowSolution:
     def __init__(self, master):
         pass
@@ -355,6 +366,7 @@ def main():
     root = tk.Tk()
     root.geometry("1078x640")
     app = MainMenu(root)
+    root.resizable(False, False)
     root.mainloop()
 
 if __name__ == '__main__':
