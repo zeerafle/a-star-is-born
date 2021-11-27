@@ -36,20 +36,12 @@ Implementasi metode A * Search di-fork dari repository [ini](https://github.com/
 
 GUI dibuat menggunakan package [Tkinter](https://tkdocs.com/index.html). Sumber belajar:
 
-- Dasar tkinter, video (bahasa Indonesia)
-    
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/RWCeiOCfIuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-- Dasar tkinter, video (bahasa inggris)
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/YXPyB4XeYLA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+- [Dasar tkinter, video (bahasa Indonesia)](https://youtu.be/RWCeiOCfIuY)
+- [Dasar tkinter, video (bahasa inggris)](https://youtu.be/YXPyB4XeYLA)
 - [Python GUI Programming](https://www.tutorialspoint.com/python/python_gui_programming.htm)
 - [Dasar tkinter (khususnya cara membuat GUI interaktif) (bahasa Inggris)](https://realpython.com/python-gui-tkinter/#making-your-applications-interactive)
 - [Saran membuat struktur kodingan tkinter yang rapi](https://stackoverflow.com/questions/17466561/best-way-to-structure-a-tkinter-application)
-- Cara berganti frame di Tkinter ([contoh kode-nya]())
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/e6ktaqlXaec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+- Cara berganti frame di Tkinter ([contoh kode-nya](https://lyw4.life/Resources/039_swapping_between_frames.py), [videonya](https://youtu.be/e6ktaqlXaec))
 
 Desain UI menggunakan [Figma](https://www.figma.com/ui-design-tool/). Daftar [Figma Education Plan](https://www.figma.com/education/) supaya dapat lisensi pro gratis.
 
