@@ -74,6 +74,6 @@ def generate_graph():
 def add_neighbours(node, neighbours):
     new_list = []
     for val in neighbours:
-        if val is not None and not val == '':
-            new_list.append(str(val))
-    graph_neighbours[str(node)] = new_list
+        if val + 1 is not None and not val + 1 == '':
+            new_list.append(str(val + 1))
+    graph_neighbours[str(node + 1)] = new_list
