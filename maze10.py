@@ -9,11 +9,11 @@ def generate_graph():
     add_neighbours(6, [5, 16])
     add_neighbours(7, [17])
     add_neighbours(8, [9, 18])
-    add_neighbours(9, [8, 19])
+    add_neighbours(9, [8, 19, 10])
     add_neighbours(10, [9, 20])
 
     add_neighbours(11, [1, 21])
-    add_neighbours(12, [2])
+    add_neighbours(12, [2, 13])
     add_neighbours(13, [3, 12])
     add_neighbours(14, [15, 24])
     add_neighbours(15, [5, 14, 25])
