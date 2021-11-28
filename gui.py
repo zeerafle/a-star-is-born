@@ -6,6 +6,7 @@ oren pudar : fed9b7
 tosca terang : 00afb9
 tosca gelap : 0081a7
 """
+
 from pathlib import Path
 import tkinter as tk
 import numpy as np
@@ -212,7 +213,8 @@ class MazeFrame:
             anchor="nw",
             text="Pilih titik awal dan akhir",
             fill="#0081A7",
-            font=("WorkSans Bold", 34 * -1)
+            font=("WorkSans Bold", 34 * -1),
+            tags=("title")
         )
 
         self.canvas.create_rectangle(
@@ -229,7 +231,8 @@ class MazeFrame:
         self.entry_bg_1 = self.canvas.create_image(
             461.4999999999999,
             529.5,
-            image=self.entry_image_1
+            image=self.entry_image_1,
+            tags=("entry")
         )
         self.entry_1 = tk.Entry(
             bd=0,
@@ -249,7 +252,8 @@ class MazeFrame:
         self.entry_bg_2 = self.canvas.create_image(
             615.4999999999999,
             529.5,
-            image=self.entry_image_2
+            image=self.entry_image_2,
+            tags=("entry")
         )
         self.entry_2 = tk.Entry(
             bd=0,
@@ -270,7 +274,8 @@ class MazeFrame:
             anchor="nw",
             text="Titik awal",
             fill="#00AFB9",
-            font=("IBMPlexSans SemiBold", 14 * -1)
+            font=("IBMPlexSans SemiBold", 14 * -1),
+            tags=("entry")
         )
 
         self.canvas.create_text(
@@ -279,7 +284,8 @@ class MazeFrame:
             anchor="nw",
             text="Titik akhir",
             fill="#00AFB9",
-            font=("IBMPlexSans SemiBold", 14 * -1)
+            font=("IBMPlexSans SemiBold", 14 * -1),
+            tags=("entry")
         )
 
         self.sisi = 290/self.maze_size
@@ -360,7 +366,7 @@ class MazeFrame:
         print("Tereksplor:", explored)
 
         for node in path:
-            print(node)
+            # print(node)
             node_location = np.where(self.maze_matrix == int(node))
             x_mat = node_location[0][0]
             y_mat = node_location[1][0]
@@ -373,6 +379,87 @@ class MazeFrame:
                 fill="#f07167",
                 outline=""
             )
+        
+        self.go_to_result_frame()
+
+    def go_to_result_frame(self):
+        """
+        Fungsi menghilangkan text entry
+        kemudian menampilkan button
+        'Jalankan lagi' dan 'home'.
+        Serta mengganti judul.
+        """
+        # hapus yang ingin diganti
+        self.entry_1.place_forget()
+        self.entry_2.place_forget()
+        self.canvas.delete("entry")
+        self.canvas.delete("title")
+
+        self.app = ResultFrame(self.master, self.frame, self.canvas, self.maze_size)
+
+class ResultFrame:
+    def __init__(self, master, frame, canvas, maze_size):
+        self.master = master
+        self.frame = frame
+        self.canvas = canvas
+        self.maze_size = maze_size
+
+        self.canvas.create_text(
+            488.9999999999999,
+            77.99999999999994,
+            anchor="nw",
+            text="Hasil",
+            fill="#0081A7",
+            font=("WorkSans Bold", 34 * -1),
+            tags=("title")
+        )
+
+        self.button_image_1 = tk.PhotoImage(file=relative_to_assets("jalankan_lagi.png"))
+        self.button_1 = tk.Button(
+            self.frame,
+            image=self.button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=self.re_run,
+            relief="flat"
+        )
+        self.button_1.place(
+            x=392.9999999999999,
+            y=501.99999999999994,
+            width=159.0,
+            height=64.0
+        )
+
+        self.button_image_2 = tk.PhotoImage(file=relative_to_assets("home_button.png"))
+        self.button_2 = tk.Button(
+            self.frame,
+            image=self.button_image_2,
+            borderwidth=0,
+            highlightthickness=0,
+            command=self.go_to_home,
+            relief="flat"
+        )
+        self.button_2.place(
+            x=582.9999999999999,
+            y=501.99999999999994,
+            width=98.0,
+            height=64.0
+        )
+    
+    def re_run(self):
+        """
+        Fungsi untuk menjalankan pencarian jalur lagi.
+        Pengguna diminta memasukkan titik awal dan akhir lagi.
+        """
+        self.frame.forget()
+        self.app = MazeFrame(self.master, self.maze_size)
+    
+    def go_to_home(self):
+        """
+        Fungsi untuk kembali ke menu awal
+        """
+        self.frame.forget()
+        self.app = MainMenu(self.master)
 
 def main():
     """
