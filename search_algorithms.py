@@ -5,10 +5,10 @@ metode pencarian heuristik A * Search
 
 import sys
 
-from  maze5  import generate_graph as maze5
-from  maze8  import generate_graph as maze8
-from  maze10 import generate_graph as maze10
-from  maze12 import generate_graph as maze12
+from  util.maze5  import generate_graph as maze5
+from  util.maze8  import generate_graph as maze8
+from  util.maze10 import generate_graph as maze10
+from  util.maze12 import generate_graph as maze12
 
 MAX_POSSIBLE_VALUE = sys.maxsize
 
