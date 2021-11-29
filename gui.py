@@ -14,6 +14,9 @@ OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
 def relative_to_assets(path: str) -> Path:
+    """
+    Menghasilkan jalur file relatif terhadap path
+    """
     return ASSETS_PATH / Path(path)
 
 class MainMenu:
@@ -366,21 +369,29 @@ class MazeFrame:
         print("Tereksplor:", explored)
 
         for node in path:
-            # print(node)
-            node_location = np.where(self.maze_matrix == int(node))
-            x_mat = node_location[0][0]
-            y_mat = node_location[1][0]
+            self.place_box(node) # warnain kotak di setiap node solusi
 
-            self.canvas_maze.create_rectangle(
-                self.sisi*y_mat + 7, #x1
-                self.sisi*x_mat + 7, #y1
-                self.sisi*(y_mat+1) - 4, #x2
-                self.sisi*(x_mat+1) - 4, #y2
-                fill="#f07167",
-                outline=""
-            )
-        
+        self.place_box(path[0], "#00afb9") # warnain kotak titik awal
+        self.place_box(path[-1], "#00afb9") # warnain kotak titik akhir
+
         self.go_to_result_frame()
+
+    def place_box(self, node, fill="#f07167"):
+        """
+        Fungsi untuk mewarnai kotak
+        """
+        node_location = np.where(self.maze_matrix == int(node))
+        x_mat = node_location[0][0]
+        y_mat = node_location[1][0]
+
+        self.canvas_maze.create_rectangle(
+            self.sisi*y_mat + 7, #x1
+            self.sisi*x_mat + 7, #y1
+            self.sisi*(y_mat+1) - 4, #x2
+            self.sisi*(x_mat+1) - 4, #y2
+            fill=fill,
+            outline=""
+        )
 
     def go_to_result_frame(self):
         """
@@ -398,6 +409,10 @@ class MazeFrame:
         self.app = ResultFrame(self.master, self.frame, self.canvas, self.maze_size)
 
 class ResultFrame:
+    """
+    Frame hasil. Terdapat tombol jalankan lagi
+    dan Home
+    """
     def __init__(self, master, frame, canvas, maze_size):
         self.master = master
         self.frame = frame
@@ -445,7 +460,7 @@ class ResultFrame:
             width=98.0,
             height=64.0
         )
-    
+
     def re_run(self):
         """
         Fungsi untuk menjalankan pencarian jalur lagi.
@@ -453,7 +468,7 @@ class ResultFrame:
         """
         self.frame.forget()
         self.app = MazeFrame(self.master, self.maze_size)
-    
+
     def go_to_home(self):
         """
         Fungsi untuk kembali ke menu awal
@@ -467,6 +482,7 @@ def main():
     """
     root = tk.Tk()
     root.geometry("1078x640")
+    root.title("Labirin Solver GUI")
     app = MainMenu(root)
     root.resizable(False, False)
     root.mainloop()
