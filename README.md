@@ -2,6 +2,10 @@
   
 Proyek ini dapat menunjukkan solusi jalur dari 4 labirin dengan ukuran berbeda serta titik awal dan tujuan yang dapat dipilih sendiri. Metode pencarian jalur yang digunakan adalah [A * Search](https://en.wikipedia.org/wiki/A*_search_algorithm).
 
+## Screenshot
+
+![UI Pilih labirin](https://github.com/zeerafle/a-star-is-born/blob/master/images/Pilih%20labirin%20frame_UI.png)
+
 ## Cara Menjalankan Program
 
 0. Install Numpy
