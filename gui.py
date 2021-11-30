@@ -69,6 +69,7 @@ class MainMenu:
             image=self.button2_image,
             borderwidth=0,
             highlightthickness=0,
+            command=self.go_to_about
         )
         self.button2.place(
             x=480.9999999999999,
@@ -88,6 +89,13 @@ class MainMenu:
         self.app = MazeSelection(self.master)
         # self.newWindow = tk.Toplevel(self.master)
         # self.app = Demo2(self.newWindow)
+
+    def go_to_about(self):
+        """
+        Method untuk pindah ke frame tentang
+        """
+        self.frame.forget()
+        self.app = About(self.master)
 
 class MazeSelection:
     """
@@ -189,6 +197,101 @@ class MazeSelection:
         """
         self.frame.forget()
         self.app = MazeFrame(self.master, maze_size)
+
+class About:
+    """
+    Frame untuk Tentang
+    """
+    def __init__(self, master):
+        self.master = master
+        self.frame = tk.Frame(self.master)
+        self.frame.pack(fill="both", expand=1)
+
+        self.canvas = tk.Canvas(
+            self.frame,
+            bg = "#FDFCDC",
+            height = 640,
+            width = 1078,
+            bd = 0,
+            highlightthickness = 0,
+            relief = "ridge"
+        )
+        self.canvas.place(x=0, y=0)
+        self.canvas.create_text(
+            471.9999999999999,
+            77.99999999999994,
+            anchor="nw",
+            text="Tentang",
+            fill="#0081A7",
+            font=("SegoeUIBlack", 34 * -1)
+        )
+
+        self.button_image_1 = tk.PhotoImage(file=relative_to_assets("home_button.png"))
+        self.button_1 = tk.Button(
+            self.frame,
+            image=self.button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=self.go_to_home,
+            relief="flat"
+        )
+        self.button_1.place(
+            x=489.9999999999999,
+            y=501.99999999999994,
+            width=98.0,
+            height=64.0
+        )
+
+        self.canvas.create_text(
+            212.9999999999999,
+            157.99999999999994,
+            anchor="nw",
+            text="Proyek Akhir Praktikum\nMata Kuliah Kecerdasan Buatan\nKelompok 2",
+            fill="#000000",
+            font=("SegoeUI Bold", 20 * -1)
+        )
+
+        desc = """Solusi Pencarian Jalur Labirin dengan A * Search.
+Proyek ini mengimplementasikan metode pencarian heuristik A * Search untuk menemukan solusi jalur labirin.
+Proyek ini dibuat menggunakan bahasa pemrograman Python."""
+        self.canvas.create_text(
+            212.9999999999999,
+            260.99999999999994,
+            anchor="nw",
+            text=desc,
+            fill="#000000",
+            font=("SegoeUI", 13 * -1)
+        )
+
+        name_text = """Fara Meydina Youndseand
+Ahmad Lutfi Alfares
+Vauwez Sam El Fareez
+Alyani Noor Septalia
+"""
+        self.canvas.create_text(
+            409.9999999999999,
+            340.99999999999994,
+            anchor="nw",
+            text=name_text,
+            fill="#000000",
+            font=("SegoeUI", 13 * -1)
+        )
+
+        self.canvas.create_text(
+            583.9999999999999,
+            340.99999999999994,
+            anchor="nw",
+            text="2009106061\n2009106074\n2009106054\n2009106100",
+            fill="#000000",
+            font=("SegoeUI", 13 * -1)
+        )
+
+    def go_to_home(self):
+        """
+        Fungsi untuk kembali ke menu awal
+        """
+        self.frame.forget()
+        self.app = MainMenu(self.master)
 
 class MazeFrame:
     """
