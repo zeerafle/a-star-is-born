@@ -38,12 +38,12 @@ class MainMenu:
         )
         self.canvas.place(x=0, y=0)
         self.canvas.create_text(
-            429.0,
+            427.0,
             78.0,
             anchor="nw",
             text="Labirin Solver",
             fill="#0081a7",
-            font=("SegoeUIBlack", 34 * -1)
+            font=("Segoe UI Black", 34 * -1)
         )
 
         self.button1_image = tk.PhotoImage(file=relative_to_assets("pilih_labirin.png"))
@@ -117,12 +117,12 @@ class MazeSelection:
         )
         self.canvas.place(x=0, y=0)
         self.canvas.create_text(
-            429.0,
-            78.0,
+            446.9999999999999,
+            77.99999999999994,
             anchor="nw",
             text="Pilih Labirin",
             fill="#0081a7",
-            font=("SegoeUIBlack", 34 * -1)
+            font=("Segoe UI Black", 34 * -1)
         )
 
         self.button_image_1 = tk.PhotoImage(file=relative_to_assets("maze5.png"))
@@ -223,7 +223,7 @@ class About:
             anchor="nw",
             text="Tentang",
             fill="#0081A7",
-            font=("SegoeUIBlack", 34 * -1)
+            font=("Segoe UI Black", 34 * -1)
         )
 
         self.button_image_1 = tk.PhotoImage(file=relative_to_assets("home_button.png"))
@@ -248,7 +248,7 @@ class About:
             anchor="nw",
             text="Proyek Akhir Praktikum\nMata Kuliah Kecerdasan Buatan\nKelompok 2",
             fill="#000000",
-            font=("SegoeUI Bold", 20 * -1)
+            font=("Segoe UI Bold", 20 * -1)
         )
 
         desc = """Solusi Pencarian Jalur Labirin dengan A * Search.
@@ -260,7 +260,7 @@ Proyek ini dibuat menggunakan bahasa pemrograman Python."""
             anchor="nw",
             text=desc,
             fill="#000000",
-            font=("SegoeUI", 13 * -1)
+            font=("Segoe UI", 13 * -1)
         )
 
         name_text = """Fara Meydina Youndseand
@@ -274,7 +274,7 @@ Alyani Noor Septalia
             anchor="nw",
             text=name_text,
             fill="#000000",
-            font=("SegoeUI", 13 * -1)
+            font=("Segoe UI", 13 * -1)
         )
 
         self.canvas.create_text(
@@ -283,7 +283,7 @@ Alyani Noor Septalia
             anchor="nw",
             text="2009106061\n2009106074\n2009106054\n2009106100",
             fill="#000000",
-            font=("SegoeUI", 13 * -1)
+            font=("Segoe UI", 13 * -1)
         )
 
     def go_to_home(self):
@@ -314,12 +314,12 @@ class MazeFrame:
         )
         self.canvas.place(x=0, y=0)
         self.canvas.create_text(
-            341.9999999999999,
+            343.9999999999999,
             77.99999999999994,
             anchor="nw",
             text="Pilih titik awal dan akhir",
             fill="#0081A7",
-            font=("SegoeUIBlack", 34 * -1),
+            font=("Segoe UI Black", 34 * -1),
             tags=("title")
         )
 
@@ -380,7 +380,7 @@ class MazeFrame:
             anchor="nw",
             text="Titik awal",
             fill="#00AFB9",
-            font=("SegoeUI", 14 * -1),
+            font=("Segoe UI", 14 * -1),
             tags=("entry")
         )
 
@@ -390,7 +390,7 @@ class MazeFrame:
             anchor="nw",
             text="Titik akhir",
             fill="#00AFB9",
-            font=("SegoeUI", 14 * -1),
+            font=("Segoe UI", 14 * -1),
             tags=("entry")
         )
 
@@ -523,12 +523,12 @@ class ResultFrame:
         self.maze_size = maze_size
 
         self.canvas.create_text(
-            488.9999999999999,
+            497.9999999999999,
             77.99999999999994,
             anchor="nw",
             text="Hasil",
             fill="#0081A7",
-            font=("SegoeUIBlack", 34 * -1),
+            font=("Segoe UI Black", 34 * -1),
             tags=("title")
         )
 
