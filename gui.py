@@ -43,7 +43,7 @@ class MainMenu:
             anchor="nw",
             text="Labirin Solver",
             fill="#0081a7",
-            font=("Lucida Console", 34 * -1)
+            font=("SegoeUIBlack", 34 * -1)
         )
 
         self.button1_image = tk.PhotoImage(file=relative_to_assets("pilih_labirin.png"))
@@ -122,7 +122,7 @@ class MazeSelection:
             anchor="nw",
             text="Pilih Labirin",
             fill="#0081a7",
-            font=("Lucida Console", 34 * -1)
+            font=("SegoeUIBlack", 34 * -1)
         )
 
         self.button_image_1 = tk.PhotoImage(file=relative_to_assets("maze5.png"))
@@ -319,7 +319,7 @@ class MazeFrame:
             anchor="nw",
             text="Pilih titik awal dan akhir",
             fill="#0081A7",
-            font=("WorkSans Bold", 34 * -1),
+            font=("SegoeUIBlack", 34 * -1),
             tags=("title")
         )
 
@@ -376,21 +376,21 @@ class MazeFrame:
 
         self.canvas.create_text(
             400.9999999999999,
-            507.99999999999994,
+            507.99999999999994 - 2,
             anchor="nw",
             text="Titik awal",
             fill="#00AFB9",
-            font=("IBMPlexSans SemiBold", 14 * -1),
+            font=("SegoeUI", 14 * -1),
             tags=("entry")
         )
 
         self.canvas.create_text(
             554.9999999999999,
-            507.99999999999994,
+            507.99999999999994 - 2,
             anchor="nw",
             text="Titik akhir",
             fill="#00AFB9",
-            font=("IBMPlexSans SemiBold", 14 * -1),
+            font=("SegoeUI", 14 * -1),
             tags=("entry")
         )
 
@@ -453,7 +453,7 @@ class MazeFrame:
         """
         Menggambar solusi jalur labirin
         """
-        from Search_Algorithms import astar_search, maze8, maze5, maze10, maze12
+        from search_algorithms import astar_search, maze8, maze5, maze10, maze12
 
         if self.maze_size == 5:
             graph = maze5()
@@ -528,7 +528,7 @@ class ResultFrame:
             anchor="nw",
             text="Hasil",
             fill="#0081A7",
-            font=("WorkSans Bold", 34 * -1),
+            font=("SegoeUIBlack", 34 * -1),
             tags=("title")
         )
 
